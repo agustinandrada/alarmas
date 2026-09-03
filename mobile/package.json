@@ -1,0 +1,30 @@
+{
+  "name": "alerta-mobile",
+  "version": "1.0.0",
+  "private": true,
+  "main": "expo-router/entry",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "prebuild": "expo prebuild",
+    "build:apk": "eas build --platform android --profile preview",
+    "ios": "expo run:ios"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "2.1.2",
+    "@react-native-firebase/app": "23.4.0",
+    "@react-native-firebase/messaging": "23.4.0",
+    "@supabase/supabase-js": "2.57.4",
+    "expo": "54.0.0",
+    "expo-device": "8.0.9",
+    "expo-notifications": "0.32.12",
+    "react": "19.1.0",
+    "react-native": "0.81.4",
+    "react-native-url-polyfill": "2.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "~19.1.10",
+    "eas-cli": "latest",
+    "typescript": "~5.9.2"
+  }
+}

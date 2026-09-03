@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "965595683968",
+    "project_id": "alertas-18f5c",
+    "storage_bucket": "alertas-18f5c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:965595683968:android:db11b60ea631020fa61a65",
+        "android_client_info": {
+          "package_name": "com.agustin.alerta"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZzVE41GX2lK0JZsAu0FJy2ylCdbIoQgs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

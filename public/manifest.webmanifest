@@ -1,0 +1,17 @@
+{
+  "name": "Alerta — La señal del grupo",
+  "short_name": "Alerta",
+  "description": "Avisale a todo tu grupo con un toque.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f8f5ed",
+  "theme_color": "#e85d3f",
+  "lang": "es",
+  "prefer_related_applications": false,
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" },
+    { "src": "/apple-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ]
+}
