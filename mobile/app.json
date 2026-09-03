@@ -8,6 +8,7 @@
     "userInterfaceStyle": "light",
     "android": {"package":"com.agustin.alerta","googleServicesFile":"./google-services.json","permissions":["VIBRATE","POST_NOTIFICATIONS"]},
     "plugins":["expo-notifications","@react-native-firebase/app","@react-native-firebase/messaging"],
-    "notification":{"color":"#ff5533","androidMode":"default","androidCollapsedTitle":"Alertas del grupo"}
+    "notification":{"color":"#ff5533","androidMode":"default","androidCollapsedTitle":"Alertas del grupo"},
+    "extra":{"eas":{"projectId":"4c532184-4136-47b8-895d-052d5206dde5"}}
   }
 }
