@@ -7,7 +7,9 @@ import { useEffect, useMemo, useState } from 'react'
 import { Alert, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, Vibration, View } from 'react-native'
 
 Notifications.setNotificationHandler({ handleNotification: async () => ({ shouldPlaySound: true, shouldSetBadge: true, shouldShowBanner: true, shouldShowList: true }) })
-const supabase = createClient(process.env.EXPO_PUBLIC_SUPABASE_URL ?? '', process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY ?? '', { auth: { storage: AsyncStorage, autoRefreshToken: false, persistSession: false } })
+const SUPABASE_URL = process.env.EXPO_PUBLIC_SUPABASE_URL || 'https://wlcpimdwouboplvhlkqq.supabase.co'
+const SUPABASE_KEY = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_3ckzAx7RUJjikGOevqLadA_hdrb94kD'
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { storage: AsyncStorage, autoRefreshToken: false, persistSession: false } })
 const fallback = [{ id: '1', text: 'Vamos a comer', sound: 'pop' }, { id: '2', text: 'Hora de Chipa', sound: 'bell' }, { id: '3', text: 'Vamos a tomar helado', sound: 'party' }]
 export default function App() {
   const [name, setName] = useState('')
@@ -18,7 +20,7 @@ export default function App() {
   useEffect(() => {
     AsyncStorage.getItem('nickname').then((value) => { if (value) setName(value) })
     client.from('alert_messages').select('id,text,sound').order('created_at').then(({ data }) => { if (data?.length) { setMessages(data); setSelected(data[0]) } })
-    messaging().requestPermission().then(() => messaging().getToken()).then((token) => { if (token) void AsyncStorage.setItem('fcm-token', token); setReady(true) })
+    messaging().requestPermission().then(() => messaging().getToken()).then((token) => { if (token) void AsyncStorage.setItem('fcm-token', token); setReady(true) }).catch(() => setReady(true))
     const unsubscribe = messaging().onMessage(async (message) => {
       await Notifications.scheduleNotificationAsync({ content: { title: message.notification?.title ?? 'Nueva alerta', body: message.notification?.body ?? 'Hay una señal del grupo', sound: 'default' }, trigger: null })
       Vibration.vibrate([0, 700, 180, 700, 180, 1200])
