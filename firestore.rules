@@ -8,5 +8,9 @@ service cloud.firestore {
       allow read, create: if true;
       allow update, delete: if false;
     }
+    match /push_tokens/{tokenId} {
+      allow create, update: if request.resource.data.token == tokenId;
+      allow read, delete: if false;
+    }
   }
 }
