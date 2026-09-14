@@ -1,5 +1,6 @@
 import { getApp, getApps, initializeApp } from 'firebase/app'
-import { getFirestore } from 'firebase/firestore'
+import { doc, getFirestore, serverTimestamp, setDoc } from 'firebase/firestore'
+import { getMessaging, getToken, isSupported } from 'firebase/messaging'
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY ?? 'AIzaSyCZzVE41GX2lK0JZsAu0FJy2ylCdbIoQgs',
@@ -12,3 +13,37 @@ const firebaseConfig = {
 
 export const firebaseApp = getApps().length ? getApp() : initializeApp(firebaseConfig)
 export const firestore = getFirestore(firebaseApp)
+
+export async function requestAndSaveWebToken() {
+  try {
+    if (typeof window === 'undefined' || !('Notification' in window)) return
+    const supported = await isSupported()
+    if (!supported) return
+
+    const permission = await Notification.requestPermission()
+    if (permission !== 'granted') return
+
+    let registration: ServiceWorkerRegistration | undefined
+    if ('serviceWorker' in navigator) {
+      registration = await navigator.serviceWorker.register('/sw.js').catch(() => undefined)
+    }
+
+    const messaging = getMessaging(firebaseApp)
+    const token = await getToken(messaging, {
+      serviceWorkerRegistration: registration,
+    }).catch((e) => {
+      console.warn('FCM getToken Web error:', e)
+      return null
+    })
+
+    if (token) {
+      await setDoc(doc(firestore, 'push_tokens', token), {
+        token,
+        platform: 'web',
+        updated_at: serverTimestamp()
+      }, { merge: true })
+    }
+  } catch (err) {
+    console.error('Error registrando token de notificaciones web:', err)
+  }
+}
