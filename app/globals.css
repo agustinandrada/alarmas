@@ -8,7 +8,7 @@
 * { @apply border-border; } body { @apply bg-background text-foreground font-sans; } button, input, select { font: inherit; } button { cursor: pointer; }
 .brand-mark { @apply flex size-11 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-lg shadow-primary/20; }
 .eyebrow { @apply font-mono text-[11px] font-black uppercase tracking-[0.2em] text-primary; }
-.status-pill { @apply flex items-center gap-1.5 rounded-full border border-border bg-card px-2.5 py-1.5 text-[10px] font-bold text-muted-foreground; } .status-pill span { @apply size-1.5 rounded-full bg-emerald-500; }
+.status-pill { @apply flex items-center gap-1.5 rounded-full border border-border bg-card px-2.5 py-1.5 text-[10px] font-bold text-muted-foreground; } .status-pill span { @apply size-1.5 rounded-full bg-emerald-500; } .status-error { @apply border-primary/40 text-primary; } .status-error span { @apply bg-primary; }
 .kicker { @apply inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-xs font-bold text-muted-foreground; }
 h1 span { color: var(--primary); }
 .field { @apply min-w-0 flex-1 rounded-xl border border-border bg-card px-3.5 text-sm outline-none transition focus:ring-2 focus:ring-primary; }
